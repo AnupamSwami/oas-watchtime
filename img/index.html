@@ -1,0 +1,82 @@
+<html>
+<body>
+<table class="yt-form">
+	<tr>
+		<td colspan="2">
+			Your Youtube Video Link<br/>
+			<input type="text" name="ytUrlInput" id="ytUrlInput" value="https://www.youtube.com/watch?v=VrGR5-fGrSs" placeholder="https://www.youtube.com/watch?v=VrGR5-fGrSs"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<select name="viewCount" id="viewCount">
+				<option selected value="5">5</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+		<td><input type="submit" onclick="myFunction()" value="Start" /></td>
+	</tr>
+</table>
+<div id="player">
+</div>
+
+
+<script>
+function myFunction() {
+	  var urlvid, fields, vid, vid1, list;
+	  	 urlvid = document.getElementById("ytUrlInput").value;
+		if(urlvid.includes("youtu.be")){
+		 vid = list = urlvid.split("/")[3];
+		}
+		else if(urlvid.includes("&list=")){
+		 fields = urlvid.split('?v=')[1];
+		 vid = fields.split('&')[0];
+		 list = fields.split('&list=')[1].split('&')[0];
+		} else {
+		 fields = urlvid.split('?v=')[1];
+		 vid = fields.split('&')[0];
+		 list = vid;
+		}
+		
+	  if(vid != ''){
+
+        urlvid = "https://www.youtube.com/embed/"+vid;
+
+//	  	urlvid = "https://www.youtube.com/embed/"+vid+"?rel=0;&autoplay=1&mute=1&loop=1&list="+list+"&vq=144p";
+
+			var n = document.getElementById("viewCount").value;
+
+		for(var i=1;i<=n;i++){
+		
+			var iframe = document.createElement('iframe');			
+			iframe.src = urlvid;
+			iframe.style.width = "256px";//256px 400px
+			iframe.style.height = "144px";//144px 120px
+			document.getElementById('player').appendChild(iframe);
+
+			}		
+        
+        
+//UU8bfoaPGR-nml7ldJI_OWTg
+//UUcrM5zwZbEgV7EvFOMG5W2A
+//UUdMlRsMbFEqN5JtiF4kSX6g
+	//var r = Math.floor(Math.random() * 74);
+	//vid1 = "https://youtube.com/playlist?list=PL_WYXVD6-zfaPVDkkrJRRs9IkRt4JQOto&playnext=1&index="+r+"&autoplay=1&mute=1&loop=1&rel=0&vq=tiny";
+	vid1 = "https://youtube.com/playlist?list=PL_WYXVD6-zfaPVDkkrJRRs9IkRt4JQOto&playnext=1&index="+r+"&autoplay=1&mute=1&loop=1&rel=0&vq=tiny";
+			var iframe1 = document.createElement('iframe');
+			iframe1.src = vid1;
+			iframe1.style.width = "256px";//96px 256px
+			iframe1.style.height = "144px";//72px 144px
+			iframe1.style.border = "1px solid red";//dashed solid
+			iframe1.setAttribute('allowFullScreen', '');
+			iframe1.setAttribute('controls', 'none');
+			iframe1.setAttribute('class', 'overlay');
+			document.getElementById('player1').appendChild(iframe1);
+
+	  }	  
+	}
+</script>
+</body>
+</html>
